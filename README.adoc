@@ -11,8 +11,86 @@ v1.0, 2019-05-25: SNAPSHOT
 :source-highlighter: coderay
 :coderay-linenums-mode: inline
 
+该插件用于根据模型信息生成相关的源码文件。
+
 == 演示效果
+从数据库读取表信息，
+生成相关的entity、mapper、service、service-impl、controller、html等文件，
+实现基本的增删改查功能。
+
 image::show-how.gif[]
 
+== 使用教程
 
-//mvn clean deploy -P sonatype-oss-snapshots -Darguments="gpg.passphrase=xiayx0O0"
+=== 添加modelgenerator插件
+[source%nowrap,maven]
+----
+<build>
+    <plugins>
+        <plugin>
+            <groupId>com.github.peacetrue.modelgenerator</groupId>
+            <artifactId>peacetrue-modelgenerator-maven-plugin</artifactId>
+            <version>1.0-RELEASE</version>
+            <configuration>
+                <propertiesPath>file:${project.build.resources[0].directory}/application-datasource.properties</propertiesPath>  <1>
+                <projectPath>${project.basedir}/aum-generated</projectPath>  <2>
+            </configuration>
+            <dependencies>
+                <dependency>  <3>
+                    <groupId>com.github.peacetrue.modelgenerator</groupId>
+                    <artifactId>peacetrue-modelgenerator-template-aum</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                </dependency>
+                <dependency>  <4>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <version>1.4.197</version>
+                </dependency>
+            </dependencies>
+        </plugin>
+    </plugins>
+</build>
+----
+<1> **propertiesPath**：指定数据源属性文件的位置
+<2> **projectPath**：指定文件生成的位置
+<3> 添加自定义模板依赖
+<4> 添加数据库驱动依赖
+
+==== propertiesPath
+默认读取当前模块``resources``下的``application-datasource.properties``，示例为默认配置。
+
+* 从类路径读取：使用``classpath:``前缀，会从插件的依赖jar包中查找，需要开发者为该插件添加依赖
+* 从文件路径读取：使用``file:``前缀，一般会配置为从当前项目中读取
+
+数据源的属性，基于**spring-boot2**，
+示例中使用的h2数据源的配置如下：
+
+----
+spring.datasource.type=org.h2.jdbcx.JdbcDataSource
+spring.datasource.initialization-mode=always
+----
+
+详细配置参考 https://docs.spring.io/spring-boot/docs/2.1.5.RELEASE/reference/htmlsingle/#common-application-properties[spring-boot属性配置列表^]
+
+==== 文件生成的位置
+默认为当前插件使用模块的上级模块，
+一般在数据访问层模块中使用该插件，
+然后向项目中的各个模块生成文件。
+示例中，直接在当前模块下生成文件。
+
+==== 模板依赖
+开发者需要为该插件提供一套模板，用于生成文件。
+示例为黄金管家所使用的模板。
+
+模板的具体用法请参考 https://github.com/peacetrue/peacetrue-modelgenerator[peacetrue-modelgenerator ^]
+
+==== 数据源驱动依赖
+示例使用了h2内存数据库，创建了一张**test**表，并为其生成基本的CRUD代码和页面。
+
+示例的源码位于 https://github.com/peacetrue/peacetrue-modelgenerator-maven-plugin/tree/master/peacetrue-modelgenerator-maven-plugin-sample[peacetrue-modelgenerator-maven-plugin-sample^]
+
+
+// mvn deploy -P sonatype-oss-snapshots
+// mvn deploy -P sonatype-oss-release
+// gpg --keyserver hkp://pgp.mit.edu --send-keys 5C4444F85F587C49A582256E9F0F45072C146627
+// gpg --keyserver hkp://pgp.mit.edu --recv-keys 5C4444F85F587C49A582256E9F0F45072C146627

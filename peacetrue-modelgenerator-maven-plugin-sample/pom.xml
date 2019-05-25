@@ -27,6 +27,7 @@
                 <version>1.0-SNAPSHOT</version>
                 <configuration>
                     <projectPath>${project.basedir}/aum-generated</projectPath>
+                    <propertiesPath>file:${project.build.resources[0].directory}/application-datasource.properties</propertiesPath>
                 </configuration>
                 <dependencies>
                     <dependency>
