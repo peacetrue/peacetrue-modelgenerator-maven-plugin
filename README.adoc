@@ -1,0 +1,18 @@
+= 模型生成器maven插件
+peacetrue
+v1.0, 2019-05-25: SNAPSHOT
+:doctype: docbook
+:toc: left
+:numbered:
+:imagesdir: docs/assets/images
+:sourcedir: ../src/main/java
+:resourcesdir: ../src/main/resources
+:testsourcedir: ../src/test/java
+:source-highlighter: coderay
+:coderay-linenums-mode: inline
+
+== 演示效果
+image::show-how.gif[]
+
+
+//mvn clean deploy -P sonatype-oss-snapshots -Darguments="gpg.passphrase=xiayx0O0"

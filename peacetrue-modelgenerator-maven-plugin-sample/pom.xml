@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.peacetrue.modelgenerator</groupId>
+    <artifactId>peacetrue-modelgenerator-maven-plugin-sample</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>peacetrue model generator maven plugin sample</name>
+    <description>用于测试的模型生成器样章</description>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>sonatype-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.peacetrue.modelgenerator</groupId>
+                <artifactId>peacetrue-modelgenerator-maven-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <configuration>
+                    <projectPath>${project.basedir}/aum-generated</projectPath>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.github.peacetrue.modelgenerator</groupId>
+                        <artifactId>peacetrue-modelgenerator-template-aum</artifactId>
+                        <version>1.0-SNAPSHOT</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>1.4.197</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
