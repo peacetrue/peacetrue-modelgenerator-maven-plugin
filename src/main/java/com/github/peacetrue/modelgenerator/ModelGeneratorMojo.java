@@ -31,11 +31,11 @@ public class ModelGeneratorMojo extends AbstractMojo {
     @Parameter(defaultValue = "file:${project.build.resources[0].directory}/application-datasource.properties")
     private String propertiesPath;
     /** 项目路径。默认为插件执行项目的父级项目 */
-    @Parameter(defaultValue = "${project.parent.basedir}")
+    @Parameter(defaultValue = "${project.basedir}/..")
     private String projectPath;
 
     public void execute() throws MojoExecutionException {
-        getLog().info("从配置[" + propertiesPath + "]中读取模型信息在生成源码文件");
+        getLog().info("从配置[" + propertiesPath + "]中读取模型信息并在目录[" + projectPath + "]下生成源码文件");
         try {
             this.executeThrowable();
         } catch (Exception e) {

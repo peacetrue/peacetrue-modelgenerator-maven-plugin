@@ -12,28 +12,21 @@
     <name>peacetrue model generator maven plugin sample</name>
     <description>用于测试的模型生成器样章</description>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>sonatype-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </pluginRepository>
-    </pluginRepositories>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>com.github.peacetrue.modelgenerator</groupId>
                 <artifactId>peacetrue-modelgenerator-maven-plugin</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0-RELEASE</version>
                 <configuration>
-                    <projectPath>${project.basedir}/aum-generated</projectPath>
+                    <projectPath>${project.basedir}/../aum-generated</projectPath>
                     <propertiesPath>file:${project.build.resources[0].directory}/application-datasource.properties</propertiesPath>
                 </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>com.github.peacetrue.modelgenerator</groupId>
                         <artifactId>peacetrue-modelgenerator-template-aum</artifactId>
-                        <version>1.0-SNAPSHOT</version>
+                        <version>1.0-RELEASE</version>
                     </dependency>
                     <dependency>
                         <groupId>com.h2database</groupId>

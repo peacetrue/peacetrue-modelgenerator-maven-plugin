@@ -17,13 +17,6 @@
     <description>通过maven插件实现生成模型相关的源码</description>
     <url>https://github.com/peacetrue/peacetrue-modelgenerator-maven-plugin</url>
 
-    <repositories>
-        <repository>
-            <id>sonatype-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </repository>
-    </repositories>
-
 
     <dependencies>
         <dependency>
@@ -42,17 +35,17 @@
         <dependency>
             <groupId>com.github.peacetrue.modelgenerator</groupId>
             <artifactId>peacetrue-modelgenerator</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.github.peacetrue.modelgenerator</groupId>
             <artifactId>peacetrue-modelgenerator-template</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.github.peacetrue.modelgenerator</groupId>
             <artifactId>peacetrue-modelgenerator-model-datasource</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
